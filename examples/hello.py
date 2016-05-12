@@ -19,7 +19,6 @@
 """""
 # 实在没找到其它好办法，只能强行转码 =。=
 import sys
-
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
