@@ -1,6 +1,6 @@
 #!FlaskWebExample/venv/bin/python
 #-*- coding: utf-8 -*-
-# coding=utf-8
+#coding=utf-8
 
 """
 第二章重点
