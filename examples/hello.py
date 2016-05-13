@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
+#!FlaskWebExample/venv/bin/python
+#-*- coding: utf-8 -*-
 # coding=utf-8
-# encoding=utf8
+
 """
 第二章重点
 1.
@@ -16,14 +17,22 @@
 3.程序和和请求上下文
     关于上下文的理解可以参考知乎的回答 https://www.zhihu.com/question/26387327
 
+4.请求调度和请求钩子
+
+5.响应
+
 """""
 # 实在没找到其它好办法，只能强行转码 =。=
 import sys
 reload(sys)
-sys.setdefaultencoding('utf-8')
+#sys.setdefaultencoding('utf-8')
 
 # 导入flask模块
 from flask import Flask
+
+#导入响应函数make_response
+from flask import make_response
+
 # 导入request模块
 from flask import request
 
@@ -37,7 +46,10 @@ app = Flask(__name__)
 def index():
     # 调用请求对象获取请求上下文
     user_agent = request.headers.get('User-Agent')
-    return '<h1>HelloWorld!</h1><p>你的浏览器是 %s.</p>' % user_agent
+    #
+    response = make_response('<h1>HelloWorld!</h1><p>Your browser is %s.</p><p>This Response was make by make_response</p>' % user_agent, )
+    response.set_cookie('answer', '42')
+    return response,
 
 
 # 动态url
