@@ -32,6 +32,8 @@ from flask import Flask
 
 #导入响应函数make_response
 from flask import make_response
+from flask import redirect
+from flask import abort
 
 # 导入request模块
 from flask import request
@@ -55,7 +57,10 @@ def index():
 # 动态url
 @app.route('/user/<name>')
 def user(name):
+    if not name:
+        return abort(404)
     return '<h1>hello, %s!</h1>' % name
+
 
 
 if __name__ == '__main__':
