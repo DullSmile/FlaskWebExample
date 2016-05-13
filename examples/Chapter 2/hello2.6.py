@@ -1,4 +1,5 @@
 # coding=utf-8
+
 from flask import Flask
 # Flask扩展，使用Flask-Script支持命令行选项
 from flask_script import Manager
