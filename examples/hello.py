@@ -25,7 +25,7 @@
 # 实在没找到其它好办法，只能强行转码 =。=
 import sys
 reload(sys)
-#sys.setdefaultencoding('utf-8')
+sys.setdefaultencoding('utf-8')
 
 # 导入flask模块
 from flask import Flask
