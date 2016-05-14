@@ -7,7 +7,8 @@ from wtforms.validators import Required,DataRequired
 import  os
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
-
+from flask_script import Shell
+from flask_migrate import Migrate,MigrateCommand
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -19,7 +20,8 @@ app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 manager = Manager(app)
-
+migrate = Migrate(app, db)
+manager.add_command('db', MigrateCommand)
 
 class NameForm(Form):
     name = StringField('what\'s your name?', validators=[DataRequired()])
@@ -61,7 +63,10 @@ def index():
     return render_template('index.html', form = form, name = session.get('name'), known = session.get('known', False))
 
 
+def make_shell_contex():
+    return dict(app = app, db = db, User = User, Role = Role)
 
+manager.add_command("shell", Shell(make_context=make_shell_contex()))
 
 if __name__ == '__main__':
     app.run(debug=True)
