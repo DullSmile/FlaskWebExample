@@ -1,6 +1,6 @@
 #!FlaskWebExample/venv/bin/python
-#-*- coding: utf-8 -*-
-#coding=utf-8
+# -*- coding: utf-8 -*-
+# coding=utf-8
 
 """
 第二章重点
@@ -22,17 +22,12 @@
 5.响应
 
 """""
-# 实在没找到其它好办法，只能强行转码 =。=
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 # 导入flask模块
 from flask import Flask
 
-#导入响应函数make_response
+# 导入响应函数make_response
 from flask import make_response
-from flask import redirect
 from flask import abort
 
 # 导入request模块
@@ -49,7 +44,8 @@ def index():
     # 调用请求对象获取请求上下文
     user_agent = request.headers.get('User-Agent')
     #
-    response = make_response('<h1>HelloWorld!</h1><p>Your browser is %s.</p><p>This Response was make by make_response</p>' % user_agent, )
+    response = make_response(
+        '<h1>HelloWorld!</h1><p>Your browser is %s.</p><p>This Response was make by make_response</p>' % user_agent, )
     response.set_cookie('answer', '42')
     return response,
 
@@ -60,7 +56,6 @@ def user(name):
     if not name:
         return abort(404)
     return '<h1>hello, %s!</h1>' % name
-
 
 
 if __name__ == '__main__':
